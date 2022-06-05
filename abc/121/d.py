@@ -1,8 +1,9 @@
-"""
-まずはsortして解決できないか考える
-そして計算量を理解せよ
-"""
 import sys
-import math
 input = sys.stdin.readline
-INF = math.inf
+A, B = map(int, input().split())
+# tmp = A
+# for i in range(A, B):
+#     tmp = tmp ^ (i+1)
+
+# print(tmp)
+print(bin(A), bin(B))
