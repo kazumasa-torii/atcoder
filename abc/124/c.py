@@ -1,25 +1,25 @@
-"""
-sortして愚直に全探索できるか考える
-その後に難しそうであれば下記アルゴリズムを考える
-
-共通
-全探索,二部探索,累積和,いもす法
-
-グラフ関係
-DFS,BFS,ダイクストラ法,ワーシャルフロイド法
-
-DP
-区間,bit,ナップサック
-
-その他
-素数判定法,クラスカル法,木,Union-find
-"""
-import sys
-# import pypyjit
-# pypyjit.set_param('max_unroll_recursion=-1')
-input = sys.stdin.readline
-
 def main():
-    pass
+    N = input()
+    one = '0'
+    two = '1'
+    if len(N) == 0:
+        print(0)
+        return
+
+    for _ in range(len(N)-1):
+        if one[-1] == '1': one += '0'
+        else: one += '1'
+        if two[-1] == '1': two += '0'
+        else: two += '1'
+
+    one_diff = 0
+    two_diff = 0
+    for i in range(len(N)):
+        if one[i] != N[i]:
+            one_diff += 1
+        if two[i] != N[i]:
+            two_diff += 1
+
+    print(min(one_diff, two_diff))
 
 main()

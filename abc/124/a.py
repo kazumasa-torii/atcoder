@@ -2,11 +2,10 @@
 簡単のifelse
 """
 import sys
-# import pypyjit
-# pypyjit.set_param('max_unroll_recursion=-1')
 input = sys.stdin.readline
 
 def main():
-    pass
+    A, B = map(int, input().split())
+    print(max(A + A-1, B + B-1, A+B))
 
 main()

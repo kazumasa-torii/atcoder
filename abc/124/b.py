@@ -2,11 +2,18 @@
 for 一つで考える
 """
 import sys
-# import pypyjit
-# pypyjit.set_param('max_unroll_recursion=-1')
 input = sys.stdin.readline
 
 def main():
-    pass
+    N = int(input())
+    H = list(map(int, input().split()))
+    ans = 1
+    tmp = H[0]
+    for i in range(1,N):
+        if H[i] >= tmp:
+            tmp = H[i]
+            ans += 1
+    print(ans)
+
 
 main()
