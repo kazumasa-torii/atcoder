@@ -1,12 +1,10 @@
-"""
-簡単のifelse
-"""
 import sys
-# import pypyjit
-# pypyjit.set_param('max_unroll_recursion=-1')
 input = sys.stdin.readline
 
 def main():
-    pass
+    A, B, T = map(int,input().split())
+    T = T + 0.5
+    kosu = T // A
+    print(int(kosu * B))
 
 main()

@@ -27,9 +27,12 @@ def main():
     if cnt != 0:
         Nums.append(cnt)
 
+    # 1-0-1-0-1-0-1 って感じの配列が欲しい
+    # 1-0-1-0-1-0 みたいに0で終わっていたら適当に1つ足す
     if len(Nums) % 2 == 0:
         Nums.append(0)
 
+    # 累積和作成
     Csum = [0] * (len(Nums) + 1)
     for i in range(len(Nums)):
         Csum[i+1] = Csum[i] + Nums[i]

@@ -1,25 +1,23 @@
-"""
-sortして愚直に全探索できるか考える
-その後に難しそうであれば下記アルゴリズムを考える
-
-共通
-全探索,二部探索,累積和,いもす法
-
-グラフ関係
-DFS,BFS,ダイクストラ法,ワーシャルフロイド法
-
-DP
-区間,bit,ナップサック
-
-その他
-素数判定法,クラスカル法,木,Union-find
-"""
 import sys
-# import pypyjit
-# pypyjit.set_param('max_unroll_recursion=-1')
-input = sys.stdin.readline
-
+import math
 def main():
-    pass
+    input = sys.stdin.readline
+    N = int(input())
+    li = list(map(int,input().split()))
+
+    #累積GCD
+    left = [0] * (N + 1)
+    right = [0] * (N + 1)
+    for i in range(N):
+        # 前からgcdしていき前から挿入していく
+        left[i + 1] = (math.gcd(left[i], li[i]))
+        # 後ろからgcdを求めていき後ろに挿入
+        right[N - i - 1] = (math.gcd(right[N - i], li[N - 1 - i]))
+
+    ans = 0
+    for i in range(N):
+        # 一つの値を抜いた状態でのGCDを求めていく
+        ans = max(ans, math.gcd(left[i],right[i + 1]))
+    print(ans)
 
 main()
