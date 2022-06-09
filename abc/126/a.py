@@ -1,12 +1,13 @@
 """
 簡単のifelse
 """
-import sys
 # import pypyjit
 # pypyjit.set_param('max_unroll_recursion=-1')
-input = sys.stdin.readline
 
 def main():
-    pass
-
+    N, K = map(int, input().split())
+    K -= 1
+    S = list(input())
+    S[K] = S[K].lower()
+    print(''.join(S))
 main()

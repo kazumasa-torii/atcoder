@@ -1,7 +1,14 @@
-"""
-簡単のifelse
-"""
 import sys
-import math
 input = sys.stdin.readline
-INF = math.inf
+H, W = map(int,input().split())
+R, C = map(int,input().split())
+ans = 4
+if C == 1:
+    ans -=1
+if R == 1:
+    ans -= 1
+if C == W:
+    ans -=1
+if R == H:
+    ans -= 1
+print(ans)
