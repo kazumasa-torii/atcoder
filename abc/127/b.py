@@ -1,12 +1,14 @@
-"""
-for 一つで考える
-"""
 import sys
-# import pypyjit
-# pypyjit.set_param('max_unroll_recursion=-1')
+from typing import List
 input = sys.stdin.readline
 
 def main():
-    pass
+    r, D, x = map(int, input().split())
+    tmp = x
+    for i in range(1, 11):
+        ans = (r*tmp)-D
+        print(ans)
+        tmp = ans
+    return
 
 main()

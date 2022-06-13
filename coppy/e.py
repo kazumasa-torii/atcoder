@@ -21,6 +21,6 @@ from typing import List
 input = sys.stdin.readline
 
 def main():
-    pass
+    return
 
 main()

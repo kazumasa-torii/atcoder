@@ -2,11 +2,18 @@
 簡単のifelse
 """
 import sys
-# import pypyjit
-# pypyjit.set_param('max_unroll_recursion=-1')
+from typing import List
 input = sys.stdin.readline
 
 def main():
-    pass
+    A, B = map(int, input().split())
+    if A <= 12:
+        B /= 2
+    elif A <= 5:
+        B = 0
+    else:
+        pass
+    print(int(B))
+    return
 
 main()

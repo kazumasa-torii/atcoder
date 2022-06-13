@@ -1,25 +1,34 @@
 """
-まずはsortして解決できないか考える
-下記アルゴリズムを考える
+嘘解法
+全探索させちゃうけどプライオリティキューで高速化
+※lambdaとheapqの直接インポートした結果AC
 
-共通
-全探索,二部探索,累積和,いもす法
-
-グラフ関係
-DFS,BFS,ダイクストラ法,ワーシャルフロイド法
-
-DP
-区間,bit,ナップサック
-
-その他
-素数判定法,クラスカル法,木,Union-find
+公式解説
+すべての数字を混ぜてそこから大きいものを取得させる
+※これのほうが簡単そう
 """
-import sys
-# import pypyjit
-# pypyjit.set_param('max_unroll_recursion=-1')
-input = sys.stdin.readline
 
+import sys
+from heapq import heapify, heappop, heappush
+input = sys.stdin.readline
+ 
 def main():
-    pass
+    N, M = map(int, input().split())
+    A = list(map(int, input().split()))
+    heapify(A)
+    li = []
+    for _ in range(M):
+        x, y = map(int, input().split())
+        li.append((x, y))
+    aftre = sorted(li, key=lambda x: -x[1])
+    for i in range(M):
+        for _ in range(aftre[i][0]):
+            min_num = heappop(A)
+            if min_num < aftre[i][1]:
+                heappush(A, aftre[i][1])
+            else:
+                heappush(A, min_num)
+                break
+    print(sum(A))
 
 main()

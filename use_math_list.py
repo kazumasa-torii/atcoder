@@ -1,0 +1,283 @@
+'''
+a,bの最大公約数----------------------------------------------------------
+'''
+def gcd(a, b):
+    while b:
+        a, b = b, a % b
+    return a
+
+'''
+a,bの最小公倍数----------------------------------------------------------
+'''
+def lcm(a, b):
+    return a * b // gcd (a, b)
+'''
+約数列挙----------------------------------------------------------
+nの約数を全て求める
+'''
+def divisor(n):
+    i = 1
+    table = []
+    while i * i <= n:
+        if n%i == 0:
+            table.append(i)
+            table.append(n//i)
+        i += 1
+    table = list(set(table))
+    return table
+'''
+素因数分解----------------------------------------------------------
+nを素因数分解したリストを返す
+'''
+def prime_decomposition(n):
+  i = 2
+  table = []
+  while i * i <= n:
+    while n % i == 0:
+      n /= i
+      table.append(i)
+    i += 1
+  if n > 1:
+    table.append(n)
+  return table
+
+'''
+素数判定----------------------------------------------------------
+引数nが素数かどうかを判定
+'''
+def is_prime(n):
+    for i in range(2, n + 1):
+        if i * i > n:
+            break
+        if n % i == 0:
+            return False
+    return n != 1
+
+'''
+べき乗の計算----------------------------------------------------------
+xのn乗をmで割った余り
+'''
+def pos(x, n, m):
+    if n == 0:
+        return 1
+    res = pos(x*x%m, n//2, m)
+    if n%2 == 1:
+        res = res*x%m
+    return res
+
+'''
+ビット生成----------------------------------------------------------
+実行結果
+[(0, 0, 0), (0, 0, 1), (0, 1, 0), (0, 1, 1), (1, 0, 0), (1, 0, 1), (1, 1, 0), (1, 1, 1)]
+'''
+import itertools
+L = [0, 1] #生成する数字
+num = 3 #生成するビット数
+bit_list = list(itertools.product([0, 1], repeat=num))
+
+
+
+import itertools
+
+seq = ('a', 'b', 'c', 'd', 'e')
+
+#階乗
+ptr = list(itertools.permutations(seq)) #組み合わせ列挙 5!
+
+'''
+実行結果
+[('a', 'b', 'c', 'd', 'e'),
+ ('a', 'b', 'c', 'e', 'd'),
+ ('a', 'b', 'd', 'c', 'e'),
+ ('a', 'b', 'd', 'e', 'c'),
+           中略
+ ('e', 'd', 'c', 'a', 'b'),
+ ('e', 'd', 'c', 'b', 'a')]
+ '''
+
+ptr_num = len(list(itertools.permutations(seq))) #組み合わせ数 
+
+'''実行結果
+    120
+'''
+
+'''
+nPa(順列)----------------------------------------------------------
+'''
+import itertools
+
+seq = ('a', 'b', 'c', 'd', 'e')
+ptr = list(itertools.permutations(seq, 3)) #順列列挙 5P3
+
+'''実行結果
+[('a', 'b', 'c'),
+ ('a', 'b', 'd'),
+ ('a', 'b', 'e'),
+ ('a', 'c', 'b'),
+       中略
+ ('e', 'd', 'a'),
+ ('e', 'd', 'b'),
+ ('e', 'd', 'c')]
+'''
+
+ptr_num = len(list(itertools.permutations(seq, 3))) #順列数
+
+'''実行結果
+    60
+'''
+
+'''
+nCa (組み合わせ)----------------------------------------------------------
+'''
+import itertools
+
+seq = ('a', 'b', 'c', 'd', 'e')
+ptr = list(itertools.combinations(seq,3)) # 組み合わせ列挙 5C3
+
+'''実行結果
+[('a', 'b', 'c'),
+ ('a', 'b', 'd'),
+ ('a', 'b', 'e'),
+ ('a', 'c', 'd'),
+ ('a', 'c', 'e'),
+ ('a', 'd', 'e'),
+ ('b', 'c', 'd'),
+ ('b', 'c', 'e'),
+ ('b', 'd', 'e'),
+ ('c', 'd', 'e')]
+ '''
+
+from collections import Counter
+arr = [1,1,4,6,1,1,35,1,5,1,3]
+d = Counter() #インスタンスを生成
+d.update(arr)
+print(d[1]) #d[数えたい値]
+
+'''実行結果
+6
+'''
+
+'''
+Union-Find-木----------------------------------------------------------
+'''
+class UnionFind:
+    def __init__(self, n):
+        self.par = [i for i in range(n)] #親
+        self.rank = [0 for _ in range(n)] #根の深さ
+
+    #xの属する木の根を求める
+    def find(self, x):
+        if self.par[x] == x:
+            return x
+        else:
+            self.par[x] = self.find(self.par[x])
+            return self.par[x]
+
+    #xとyの属する集合のマージ
+    def unite(self, x, y):
+        x = self.find(x)
+        y = self.find(y)
+        if x == y:
+            return
+        if self.rank[x] < self.rank[y]:
+            self.par[x] = y
+        else:
+            self.par[y] = x
+            if self.rank[x] == self.rank[y]:
+                self.rank[x] += 1
+
+    #xとyが同じ集合に属するかを判定
+    def same(self, x, y):
+        return self.find(x) == self.find(y)
+
+'''
+クラスカル法----------------------------------------------------------
+クラスカル法にはUnion-find木が必要
+'''
+class UnionFind:
+    def __init__(self, n):
+        self.par = [i for i in range(n)] #親
+        self.rank = [0 for _ in range(n)] #根の深さ
+
+    #xの属する木の根を求める
+    def find(self, x):
+        if self.par[x] == x:
+            return x
+        else:
+            self.par[x] = self.find(self.par[x])
+            return self.par[x]
+
+    #xとyの属する集合のマージ
+    def unite(self, x, y):
+        x = self.find(x)
+        y = self.find(y)
+        if x == y:
+            return
+        if self.rank[x] < self.rank[y]:
+            self.par[x] = y
+        else:
+            self.par[y] = x
+            if self.rank[x] == self.rank[y]:
+                self.rank[x] += 1
+
+    #xとyが同じ集合に属するかを判定
+    def same(self, x, y):
+        return self.find(x) == self.find(y)
+
+
+#クラスカル法
+# V: 頂点集合(リスト) E: 辺集合[始点, 終点, 重み](リスト)
+class kruskal():
+    def __init__(self, V, E):
+        self.V = V
+        self.E = E
+        self.E.sort(key=lambda x: x[2]) #辺の重みでソート
+
+    def weight(self): #最小全域木の重み和を求める
+        UF = UnionFind(len(V)) #頂点数でUnion Find Treeを初期化
+        res = 0
+        for i in range(len(self.E)):
+            e = self.E[i]
+
+            if (UF.same(e[0], e[1])) == False:
+                UF.unite(e[0], e[1])
+                res += e[2]
+
+        return res
+
+    def edge(self):
+        UF = UnionFind(len(self.V)) #頂点数でUnion Find Treeを初期化
+        res_E = []
+        for i in range(len(self.E)):
+            e = self.E[i]
+
+            if (UF.same(e[0], e[1])) == False:
+                UF.unite(e[0], e[1])
+                res_E.append(e)
+
+        return res_E
+
+    def node(self):
+        UF = UnionFind(len(V)) #頂点数でUnion Find Treeを初期化
+        res_V = []
+        for i in range(len(E)):
+            e = E[i]
+
+            if (UF.same(e[0], e[1])) == False:
+                UF.unite(e[0], e[1])
+                res_V.append(e[0])
+                res_V.append(e[1])
+
+        return list(set(res_V))
+
+'''
+ワーシャル-フロイド法---------------------------------------------------------------------------------------
+d[i][j]は2頂点間i, j間の移動コストを格納, Vは頂点数
+'''
+def warshall_floyd(d, V):
+    for k in range(V):
+        for i in range(V):
+            for j in range(V):
+                d[i][j] = min(d[i][j], d[i][k] + d[k][j])
+
+    return d #d[i][j]に頂点i, j間の最短距離を格納

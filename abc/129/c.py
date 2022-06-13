@@ -15,11 +15,12 @@ DP
 素数判定法,クラスカル法,木,Union-find
 """
 import sys
+from typing import List
 # import pypyjit
 # pypyjit.set_param('max_unroll_recursion=-1')
 input = sys.stdin.readline
 
 def main():
-    pass
+    return
 
 main()
