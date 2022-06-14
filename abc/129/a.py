@@ -3,11 +3,11 @@
 """
 import sys
 from typing import List
-# import pypyjit
-# pypyjit.set_param('max_unroll_recursion=-1')
 input = sys.stdin.readline
 
 def main():
+    P, R, Q = map(int, input().split())
+    print(min(P+R, P+Q, Q+R))
     return
 
 main()
