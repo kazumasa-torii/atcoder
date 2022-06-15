@@ -1,26 +1,22 @@
 """
-まずはsortして解決できないか考える
-下記アルゴリズムを考える
+縦方向と横方向でどのくらいのマスが光に照らされているのかを収集する
+そして答えを 縦方向 + 横方向 -1を行い大きさを比べていく
+-1は自分のマスを抜いた数ということ
 
-共通
-全探索,二部探索,累積和,いもす法
+ただ実装イメージがついていないので再度やる
 
-グラフ関係
-DFS,BFS,ダイクストラ法,ワーシャルフロイド法
-
-DP
-区間,bit,ナップサック
-
-その他
-素数判定法,クラスカル法,木,Union-find
 """
-import sys
 from typing import List
-# import pypyjit
-# pypyjit.set_param('max_unroll_recursion=-1')
-input = sys.stdin.readline
-
+from sys import  stdin
+input = stdin.readline
 def main():
+    # H, W = map(int, input().split())
+    # atlas: List[str] = [str(input().rstrip('\n')) for _ in range(H)]
+
+    H, W = 4, 6
+    atlas: List[str] = ['#..#..', '.....#', '....#.', '#.#...']
+
+
     return
 
 main()
