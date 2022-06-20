@@ -22,12 +22,9 @@ def binary_search(key: int) -> int:
     left: int = -1
     right: int = len(a)
     while right - left > 1:
-        print(left, right, right-left, left + (right - left),math.ceil(left + (right - left) / 2))
         mid: int = math.ceil(left + (right - left) / 2)
         if isOK(mid, key): right = mid
         else: left = mid
-        print(left, right)
-
     return right
 
 a = [1, 14, 32, 51, 51, 51, 243, 419, 750, 910]
