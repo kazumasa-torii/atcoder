@@ -1,29 +1,37 @@
 """
-sortして愚直に全探索できるか考える
-その後に難しそうであれば下記アルゴリズムを考える
-
-共通
-全探索,二部探索,累積和,いもす法,順列全探索,区間スケジューリング,貪欲法
-
-グラフ関係
-DFS,BFS,ダイクストラ法,ワーシャルフロイド法,トポロジカルソート
-
-DP
-区間,bit,ナップサック,桁
-
-数学
-約数,素数判定法,mod,組み合わせ,幾何
-
-その他
-クラスカル法,木,Union-find
+ワーシャルフロイド版
 """
-import sys
-from typing import List
-# import pypyjit
-# pypyjit.set_param('max_unroll_recursion=-1')
-input = sys.stdin.readline
-
 def main():
-    return
+    N = int(input())
+    L = []
 
-main()
+    for i in range(N):
+        x, y, P = list(map(int, input().split()))
+        L.append([x, y, P])
+
+    inf = 10 ** 10
+    wf_L = [[inf] * N for i in range(N)]
+
+    for start in range(N):
+        sx, sy, sp = L[start]
+        for goal in range(N):
+            if start == goal:
+                wf_L[start][goal] = 0
+            else:
+                gx, gy, gp = L[goal]
+                length = abs(sx - gx) + abs(sy - gy)
+                S = -(-length // sp)
+                wf_L[start][goal] = S
+
+    for mid in range(N):
+        for start in range(N):
+            for goal in range(N):
+                wf_L[start][goal] = min(wf_L[start][goal], max(wf_L[start][mid], wf_L[mid][goal]))
+
+    ans = inf
+    for tmp in wf_L:
+        ans = min(ans, max(tmp))
+    print(ans)
+
+if __name__ == '__main__':
+    main()
