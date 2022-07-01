@@ -1,7 +1,20 @@
 import sys
-input = sys.stdin.readline
-N = int(input())
-if N % 100 == 0:
-    print(N // 100)
-else:
-    print(N // 100 + 1)
+import time
+from io import StringIO
+from typing import List
+# input = sys.stdin.readline
+# import pypyjit
+# pypyjit.set_param('max_unroll_recursion=-1')
+
+_INPUT = """\
+
+"""
+StartTime = time.time()
+sys.stdin = StringIO(_INPUT)
+
+def main():
+    # for i in range():
+    return
+
+main()
+print(f'[Sec] {str(time.time() - StartTime)}')
