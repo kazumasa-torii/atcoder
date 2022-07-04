@@ -7,13 +7,25 @@ from typing import List
 # pypyjit.set_param('max_unroll_recursion=-1')
 
 _INPUT = """\
+100
 
 """
 StartTime = time.time()
 sys.stdin = StringIO(_INPUT)
 
+
+import datetime
 def main():
-    # for i in range():
+    K = int(input())
+    dt = datetime.datetime(2022, 7, 2, 21, 0)
+    dt = dt + datetime.timedelta(minutes=K)
+    ho = str(dt.hour)
+    mi = str(dt.minute)
+    if len(ho) == 1:
+        ho = '0' + str(ho)
+    if len(mi) == 1:
+        mi = '0' + str(mi)
+    print(f'{str(ho)}:{str(mi)}')
     return
 
 main()

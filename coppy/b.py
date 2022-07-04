@@ -13,7 +13,6 @@ StartTime = time.time()
 sys.stdin = StringIO(_INPUT)
 
 def main():
-    # for i in range():
     return
 
 main()

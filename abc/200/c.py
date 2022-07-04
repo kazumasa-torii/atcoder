@@ -26,13 +26,25 @@ from typing import List
 # pypyjit.set_param('max_unroll_recursion=-1')
 
 _INPUT = """\
+8
+199 100 200 400 300 500 600 200
 
 """
 StartTime = time.time()
 sys.stdin = StringIO(_INPUT)
 
+from collections import defaultdict
 def main():
-    # for i in range():
+    num = 200
+    ans = 0
+    N = int(input())
+    A = list(map(int, input().split()))
+    dic = defaultdict(int)
+    for i in range(N):
+        dic[A[i] % num] += 1
+    for _, i in enumerate(dic):
+        ans += (dic[i] * (dic[i] - 1)) / 2
+    print(int(ans))
     return
 
 main()

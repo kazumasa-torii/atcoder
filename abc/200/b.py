@@ -7,13 +7,20 @@ from typing import List
 # pypyjit.set_param('max_unroll_recursion=-1')
 
 _INPUT = """\
+8691 20
 
 """
 StartTime = time.time()
 sys.stdin = StringIO(_INPUT)
 
 def main():
-    # for i in range():
+    N, K = map(int, input().split())
+    for _ in range(K):
+        if N % 200 == 0:
+            N = int(N / 200)
+        else:
+            N = int(str(N) + '200')
+    print(N)
     return
 
 main()
