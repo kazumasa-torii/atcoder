@@ -7,18 +7,16 @@ from typing import List
 # pypyjit.set_param('max_unroll_recursion=-1')
 
 _INPUT = """\
+1 4 3
 
 """
 StartTime = time.time()
 sys.stdin = StringIO(_INPUT)
 
 def main():
-    N, K = map(int, input().split())
-    li = []
-    for i in range(1, N+1):
-        for j in range(1, K+1):
-            li.append(int(str(i) + '0' + str(j)))
-    print(sum(li))
+    a, b, c = map(int, input().split())
+    si = {1:6, 2:5, 3:4, 4:3, 5:2, 6:1}
+    print(si[a] + si[b] + si[c])
     return
 
 main()

@@ -43,10 +43,10 @@ def prime_decomposition(n):
 
 '''
 素数判定----------------------------------------------------------
-引数nが素数かどうかを判定
+引数nが素数かどうかを判定(試し割り法)
 '''
 def is_prime(n):
-    for i in range(2, n + 1):
+    for i in range(2, int(n**0.5) + 1):
         if i * i > n:
             break
         if n % i == 0:
