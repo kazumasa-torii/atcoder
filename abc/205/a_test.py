@@ -7,14 +7,16 @@ from typing import List
 # pypyjit.set_param('max_unroll_recursion=-1')
 
 _INPUT = """\
+37 450
 
 """
 StartTime = time.time()
 sys.stdin = StringIO(_INPUT)
 
 def main():
+    A, B = map(int, input().split())
+    print((A/100) * B)
     return
 
-if __name__ == '__main__':
-    main()
-    print(f'[Sec] {str(time.time() - StartTime)}')
+main()
+print(f'[Sec] {str(time.time() - StartTime)}')
