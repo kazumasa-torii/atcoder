@@ -1,19 +1,15 @@
-import sys
-import time
-from io import StringIO
-from typing import List
-# input = sys.stdin.readline
-# import pypyjit
-# pypyjit.set_param('max_unroll_recursion=-1')
-
-_INPUT = """\
-
-"""
-StartTime = time.time()
-sys.stdin = StringIO(_INPUT)
-
+import math
 def main():
+    a, b, d = map(int, input().split())
+
+    r = math.hypot(a, b)
+    theta = math.atan2(b, a)
+    theta += math.radians(d)
+
+    x = math.cos(theta) * r
+    y = math.sin(theta) * r
+    print(x, y)
+
     return
 
 main()
-print(f'[Sec] {str(time.time() - StartTime)}')
