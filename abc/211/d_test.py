@@ -21,14 +21,32 @@ import sys
 import time
 from io import StringIO
 from typing import List
+# input = sys.stdin.readline
+# import pypyjit
+# pypyjit.set_param('max_unroll_recursion=-1')
 
 _INPUT = """\
+4 5
+2 4
+1 2
+2 3
+1 3
+3 4
 
 """
 StartTime = time.time()
 sys.stdin = StringIO(_INPUT)
 
 def main():
+    n, m = map(int, input().split())
+    maps = [[] for _ in range(n)]
+    for _ in range(m):
+        a, b = map(int, input().split())
+        a -= 1
+        b -= 1
+        maps[a].append(b)
+        maps[b].append(a)
+    print(maps)
     return
 
 if __name__ == '__main__':

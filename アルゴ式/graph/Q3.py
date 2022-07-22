@@ -18,7 +18,12 @@ StartTime = time.time()
 sys.stdin = StringIO(_INPUT)
 
 def main():
-    
+    h, w = map(int, input().split())
+    sx, sy, gx, gy = map(int, input().split())
+    maps = list(map(int, input().split()))
+    def dfs():
+        
+        return
     return
 
 if __name__ == '__main__':
