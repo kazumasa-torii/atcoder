@@ -1,5 +1,3 @@
-import sys
-input = sys.stdin.readline
 def main():
     mod = 10 ** 9 + 7
     s = input().strip()
@@ -8,12 +6,13 @@ def main():
     dp = [[0] * 9 for _ in range(n+1)]
     for i in range(n+1):
         dp[i][0] = 1
+
     for i in range(n):
         for j in range(8):
-            if s[i] != t[j]:
-                dp[i+1][j+1] = dp[i][j+1]
-            else:
-                dp[i+1][j+1] = (dp[i][j+1] + dp[i][j]) % mod
+            dp[i+1][j+1] = dp[i][j+1]
+            if s[i] == t[j]:
+                dp[i+1][j+1] += dp[i][j]
+                dp[i+1][j+1] %= mod
     print(dp[n][8])
     return
 
