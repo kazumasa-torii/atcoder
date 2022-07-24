@@ -38,8 +38,13 @@ StartTime = time.time()
 sys.stdin = StringIO(_INPUT)
 
 from collections import deque
+import sys
+from collections import deque
+input = sys.stdin.readline
+
 def main():
-    INF = 1001001001
+    INF = 100100010
+    mod = 10 ** 9 + 7
     n, m = map(int, input().split())
     maps = [[] for _ in range(n)]
     for _ in range(m):
@@ -61,16 +66,17 @@ def main():
             if dist[u] != INF: continue
             dist[u] = dist[v] + 1
             q.append(u)
-    
-    dp = [int() for _ in range(n)]
+    dp = [0] * n
     dp[0] = 1
     for v in vs:
         for u in maps[v]:
             if dist[u] == dist[v] + 1:
                 dp[u] += dp[v]
+                dp[v] %= mod
     print(dp[n-1])
     return
 
 if __name__ == '__main__':
     main()
+
     print(f'[Sec] {str(time.time() - StartTime)}')
