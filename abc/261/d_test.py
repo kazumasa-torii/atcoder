@@ -37,28 +37,26 @@ StartTime = time.time()
 sys.stdin = StringIO(_INPUT)
 
 def main():
-    cn = 100
     n, m = map(int, input().split())
+    limit = n+1
     x = list(map(int, input().split()))
-    coin = [0] * cn
-    dp = [[0] * cn for _ in range(cn)]
+    b = [0 for i in range(limit)]
     for i in range(m):
         c, y = map(int, input().split())
-        coin[c] = y
+        b[c] = y
 
+    INF = int(1e18)
+    dp = [[-INF] * (limit) for _ in range(limit)]
     dp[0][0] = 0
-    for i in range(n):
-        for j in range(i):
-            dp[i][j] = dp[i-1][j-1] + x[i] + coin[j]
-        dp[i][0] = 0
-        for j in range(i):
-            print(dp[i-1][j])
-            dp[i][0] = max(dp[i][0], dp[i-1][j])
-    ans = 0
+    mx = 0
 
-    # for i in range(n):
-    #     ans = max(ans, dp[n][i])
-    # print(ans)
+    for i in range(1, limit):
+        dp[i][0] = mx
+        mx = 0
+        for j in range(1, limit):
+            dp[i][j] = max(dp[i][j], dp[i-1][j-1] + x[i-1] + b[j])
+            mx = max(dp[i][j], mx)
+    print(max(dp[-1]))
     return
 
 if __name__ == '__main__':

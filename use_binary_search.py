@@ -29,4 +29,4 @@ def binary_search(key: int) -> int:
 
 a = [1, 14, 32, 51, 51, 51, 243, 419, 750, 910]
 
-print(binary_search(419))
+print(binary_search(420))

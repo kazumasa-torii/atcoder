@@ -1,35 +1,36 @@
-#input
+"""
+sortして愚直に全探索できるか考える
+その後に難しそうであれば下記アルゴリズムを考える
+
+共通
+全探索,二部探索,累積和,いもす法,順列全探索,区間スケジューリング,貪欲法,鳩の巣原理
+
+グラフ関係
+DFS,BFS,ダイクストラ法,ワーシャルフロイド法,トポロジカルソート
+
+DP
+区間,bit,ナップサック,桁
+
+数学
+約数,素数判定法,mod,組み合わせ,幾何
+
+その他
+クラスカル法,木,Union-find
+"""
 import sys
-sys.setrecursionlimit(10**7)
+import time
+from io import StringIO
+from typing import List
 
-N, M = map(int, input().split())
-z = [[] for _ in range(N)]
-# graph作成
-for _ in range(M):
-    x, y = map(int, input().split())
-    z[x-1].append(y-1)
+_INPUT = """\
 
-# メモ化再帰用のメモを作成
-memo = [False] * N
+"""
+StartTime = time.time()
+sys.stdin = StringIO(_INPUT)
 
-# そこから行ける最大値を格納していく
-max_num_list = [0] * N
+def main():
+    return
 
-def dfs(v):
-    if memo[v]:
-        # 始まりがここからだと最大値以上増えないのでlistの数値を返す
-        return max_num_list[v]
-    else:
-        res = 0
-        # 再帰的に探索
-        for u in z[v]:
-            res = max(res, dfs(u)+1)
-        max_num_list[v] = res
-        memo[v] = True
-        return res
-
-# graphの頂点iをすべて始める（どの頂点からスタートするのが最大化になるか探索するため）
-for i in range(N):
-    dfs(i)
-
-print(max(max_num_list))
+if __name__ == '__main__':
+    main()
+    print(f'[Sec] {str(time.time() - StartTime)}')
