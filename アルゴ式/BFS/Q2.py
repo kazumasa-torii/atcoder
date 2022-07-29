@@ -34,7 +34,7 @@ def main():
     q.append(0)
     dist = [-1 for _ in range(n)]
     dist[0] = 0
-    while len(q) != 0:
+    while q:
         v = q.popleft()
         for next_v in frend[v]:
             if dist[next_v] != -1:

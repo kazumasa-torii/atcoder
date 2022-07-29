@@ -1,21 +1,5 @@
 """
-sortして愚直に全探索できるか考える
-その後に難しそうであれば下記アルゴリズムを考える
-
-共通
-全探索,二部探索,累積和,いもす法,順列全探索,区間スケジューリング,貪欲法,鳩の巣原理
-
-グラフ関係
-DFS,BFS,ダイクストラ法,ワーシャルフロイド法,トポロジカルソート
-
-DP
-区間,bit,ナップサック,桁
-
-数学
-約数,素数判定法,mod,組み合わせ,幾何
-
-その他
-クラスカル法,木,Union-find
+遷移は逆順というのは思いついたが実装が出来なかった…。
 """
 import sys
 import time
@@ -23,12 +7,33 @@ from io import StringIO
 from typing import List
 
 _INPUT = """\
+5 5
+..#..
+.....
+#...#
+.....
+..#..
 
 """
 StartTime = time.time()
 sys.stdin = StringIO(_INPUT)
 
 def main():
+    mod = 10 ** 9 + 7
+    h, w = map(int, input().split())
+    filid = [input() for i in range(h)]
+    dp = [[0] * w for _ in range(h)]
+    dp[h-1][w-1] = 1
+
+    for i in range(h-1, -1, -1):
+        for j in range(w-1, -1, -1):
+            if i == h-1 and j == w-1: continue
+            if i+1 < h: dp[i][j] += dp[i+1][j]
+            if j+1 < w: dp[i][j] += dp[i][j+1]
+            dp[i][j] %= mod
+
+            if filid[i][j] == '#': dp[i][j] = 0
+    print(dp[0][0])
     return
 
 if __name__ == '__main__':
