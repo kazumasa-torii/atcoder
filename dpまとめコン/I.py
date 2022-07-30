@@ -1,21 +1,14 @@
 """
-sortして愚直に全探索できるか考える
-その後に難しそうであれば下記アルゴリズムを考える
+確率DPを行う
+基本は表のみの状態を保持しておくので裏の可能性は研鑽で求まるので無視
 
-共通
-全探索,二部探索,累積和,いもす法,順列全探索,区間スケジューリング,貪欲法,鳩の巣原理
+埋める配列
+dp[i][j] := 最初の i 枚のコインを投げたときに、表が j 枚となる確率
 
-グラフ関係
-DFS,BFS,ダイクストラ法,ワーシャルフロイド法,トポロジカルソート
+緩和式
+次のコインが表のとき: dp[i+1][j+1] += dp[i][j] * p
+次のコインが裏のとき: dp[i+1][j] += dp[i][j] * (1 - p)
 
-DP
-区間,bit,ナップサック,桁
-
-数学
-約数,素数判定法,mod,組み合わせ,幾何
-
-その他
-クラスカル法,木,Union-find
 """
 import sys
 import time
@@ -23,12 +16,28 @@ from io import StringIO
 from typing import List
 
 _INPUT = """\
+5
+0.42 0.01 0.42 0.99 0.42
 
 """
 StartTime = time.time()
 sys.stdin = StringIO(_INPUT)
 
 def main():
+    n = int(input())
+    p = list(map(float, input().split()))
+    dp = [[0] * (3100) for _ in range(3100)]
+    dp[0][0] = 1.0
+
+    for i in range(n):
+        for j in range(n+1):
+            dp[i+1][j] += dp[i][j] * (1 - p[i])
+            dp[i+1][j+1] += dp[i][j] * p[i]
+
+    ans = 0
+    for i in range(n+1):
+        if n - i < i: ans += dp[n][i]
+    print(ans)
     return
 
 if __name__ == '__main__':

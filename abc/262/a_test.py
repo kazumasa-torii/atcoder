@@ -1,9 +1,6 @@
-"""
-"""
 import sys
 import time
 from io import StringIO
-from typing import List
 
 _INPUT = """\
 
