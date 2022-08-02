@@ -31,5 +31,6 @@ sys.stdin = StringIO(_INPUT)
 def main():
     return
 
-main()
-print(f'[Sec] {str(time.time() - StartTime)}')
+if __name__ == '__main__':
+    main()
+    print(f'[Sec] {str(time.time() - StartTime)}')
