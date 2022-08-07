@@ -1,21 +1,5 @@
 """
-sortして愚直に全探索できるか考える
-その後に難しそうであれば下記アルゴリズムを考える
-
-共通
-全探索,二部探索,累積和,いもす法,順列全探索,区間スケジューリング,貪欲法,鳩の巣原理
-
-グラフ関係
-DFS,BFS,ダイクストラ法,ワーシャルフロイド法,トポロジカルソート
-
-DP
-区間,bit,ナップサック,桁
-
-数学
-約数,素数判定法,mod,組み合わせ,幾何
-
-その他
-クラスカル法,木,Union-find
+一番長い辺を使わずに合計を調べる
 """
 import sys
 import time
@@ -23,12 +7,25 @@ from io import StringIO
 from typing import List
 
 _INPUT = """\
+20 3
+0 5 15
 
 """
 StartTime = time.time()
 sys.stdin = StringIO(_INPUT)
 
 def main():
+    k, n = map(int, input().split())
+    a = list(map(int, input().split()))
+
+    acc = []
+    for i in range(n):
+        if i == n-1:
+            acc.append(a[0] + abs(k - a[i]))
+            continue
+        acc.append(abs(a[i] - a[i+1]))
+    acc.sort()
+    print(sum(acc[:-1]))
     return
 
 if __name__ == '__main__':

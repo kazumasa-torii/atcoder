@@ -1,5 +1,14 @@
 import sys
-input = sys.stdin.readline
+import time
+from io import StringIO
+
+_INPUT = """\
+54
+
+"""
+StartTime = time.time()
+sys.stdin = StringIO(_INPUT)
+
 from collections import defaultdict
 def main():
     def f(n):
@@ -26,3 +35,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+    print(f'[Sec] {str(time.time() - StartTime)}')
