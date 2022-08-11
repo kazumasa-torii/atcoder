@@ -24,6 +24,12 @@ contestLevel="$1"
 # コンテスト番号
 contestNumber="$2"
 
+echo ${#contestNumber}
+
+if [ ${#contestNumber} -eq 2 ]; then
+  contestNumber=0$contestNumber
+fi
+
 # コピー 上書き時警告表示
 if [ -e ${path}"/"${contestLevel}"/"${contestNumber} ];then
   echo "同じ名前のファイルが以下のパスで見つかりました"
