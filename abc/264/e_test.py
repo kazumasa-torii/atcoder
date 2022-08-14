@@ -117,13 +117,35 @@ class UnionFind:
         return self.__group_count
 
 def main():
-    n, m, e = map(int, input().split())
-    ui = UnionFind(n+m)
-    for _ in range(e):
-        one, two = map(int, input().split())
-        ui.unite(one, two)
-        print(ui.all_sizes())
+    N, M, E = map(int, input().split())
+    edge = []
+    for i in range(E):
+        u, v = map(int, input().split())
+        # N以上なら発電所なので、すべてNに置き換える
+        edge.append((min(u - 1, N), min(v - 1, N)))
 
+    Q = int(input())
+    X = []
+    # Q個のイベントの後、残っている辺をつなげる
+    connected = [True] * E
+    for i in range(Q):
+        x = int(input())
+        x -= 1
+        connected[x] = False
+        X.append(x)
+
+    uf = UnionFind(N + 1)
+    for i in range(E):
+        if connected[i]:  # 切れてない辺なら接続
+            u, v = edge[i]
+            uf.unite(u, v)
+
+    ans = [0] * Q  # 逆再生します
+    for i in reversed(range(Q)):
+        ans[i] = uf.size(N) - 1
+        u, v = edge[X[i]]
+        uf.unite(u, v)  # 逆再生なので、答えを求めてから接続します
+    print(*ans, sep='\n')
     return
 
 if __name__ == '__main__':
