@@ -1,12 +1,17 @@
 import sys
 input = sys.stdin.readline
-ans = 0
-A, B, C, X, Y = map(int, input().split())
-Z = min(X, Y)*2
-if A+B >= C*2:
-    max_x = max(X-Y, 0)
-    max_y = max(Y-X, 0)
-    ans = min(C*Z + A*(max_x) + B*(max_y), C*max(X,Y)*2)
-else:
-    ans = A*X + B*Y
-print(ans)
+def main():
+    a, b, c, x, y = map(int, input().split())
+    ac = min(c*2, a+b)
+    ans = 0
+    while x > 0 and y > 0:
+        ans += ac
+        x -= 1
+        y -= 1
+    if x > 0:ans += min(ac, a) * x
+    else:ans += min(ac, b) * y
+    print(ans)
+    return
+
+if __name__ == '__main__':
+    main()

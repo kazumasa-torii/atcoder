@@ -1,20 +1,30 @@
 import sys
 input = sys.stdin.readline
-
 def main():
     li = []
-    amari = []
-    for _ in range(5):
-        tmp = int(input())
-        li.append(tmp // 10)
-        if tmp % 10 != 0:
-            amari.append(tmp % 10)
-    amari.sort()
-    index = 0
-    if len(amari) != 0:
-        for i in amari:
-            index += 1
+    li.append(int(input()))
+    li.append(int(input()))
+    li.append(int(input()))
+    li.append(int(input()))
+    li.append(int(input()))
+    mn = int(1e19)
+    for i in li:
+        tmp = str(i)
+        tmp = tmp[-1]
+        if tmp == '0': continue
+        mn = min(int(tmp), mn)
+    total = 0
+    for i in li:
+        tmp = i // 10
+        amari = i % 10
+        if amari != 0: tmp += 1
+        total += tmp
+    total *= 10
+    if mn != int(1e19):
+        total += mn
+        total -= 10
+    print(total)
+    return
 
-    print(min(amari) + (sum(li) + index) * 10)
-
-main()
+if __name__ == '__main__':
+    main()
