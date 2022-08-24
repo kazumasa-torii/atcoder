@@ -1,13 +1,18 @@
-"""
-for 一つで考える
-"""
 import sys
-from typing import List
-# import pypyjit
-# pypyjit.set_param('max_unroll_recursion=-1')
 input = sys.stdin.readline
-
+from operator import itemgetter
 def main():
-    pass
+    n = int(input())
+    r = []
+    for i in range(n):
+        x, y = input().split()
+        y = int(y)
+        r.append([x,-y,i+1])
+    r.sort(key=itemgetter(0, 1))
 
-main()
+    for i in range(n):
+        print(r[i][2])
+    return
+
+if __name__ == '__main__':
+    main()
