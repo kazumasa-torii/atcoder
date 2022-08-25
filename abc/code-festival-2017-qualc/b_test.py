@@ -4,7 +4,6 @@ from io import StringIO
 
 _INPUT = """\
 
-
 """
 StartTime = time.time()
 sys.stdin = StringIO(_INPUT)
