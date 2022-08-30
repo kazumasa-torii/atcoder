@@ -24,30 +24,29 @@ from typing import List
 
 _INPUT = """\
 0 0
+1 0
 1 1
--1 0
-1 -1
+0 1
 
 """
 StartTime = time.time()
 sys.stdin = StringIO(_INPUT)
 
-import math
 def main():
-    li = [list(map(int, input().split())) for _ in range(4)]
-    for i in range(4):
-        for j in range(2):
-            if li[i][j] < 0:li[i][j] = -li[i][j]
-    flag = True
+    # 角ABC（角度は時計回りに測る）が180度未満なら true
+    def angle(a, b, c):
+        return (a[0] - b[0]) * (c[1] - b[1]) - (a[1] - b[1]) * (c[0] - b[0]) > 0
 
-    def angle(pt1, pt2, pt0) -> float:
-        dx1 = float(pt1[0,0] - pt0[0,0])
-        dy1 = float(pt1[0,1] - pt0[0,1])
-        dx2 = float(pt2[0,0] - pt0[0,0])
-        dy2 = float(pt2[0,1] - pt0[0,1])
-        v = math.sqrt((dx1*dx1 + dy1*dy1)*(dx2*dx2 + dy2*dy2) )
-        return (dx1*dx2 + dy1*dy2)/ v
+    ax, ay, bx, by, cx, cy, dx, dy = map(int, open(0).read().split())
+    a = (ax, ay)
+    b = (bx, by)
+    c = (cx, cy)
+    d = (dx, dy)
 
+    if angle(b, a, d) and angle(c, b, a) and angle(d, c, b) and angle(a, d, c):
+        print('Yes')
+    else:
+        print('No')
     return
 
 if __name__ == '__main__':

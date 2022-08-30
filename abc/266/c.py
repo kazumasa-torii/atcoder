@@ -1,29 +1,25 @@
+"""
+グラフというか三角の求め方みたいな感じ…。
+ただ理解できないのでもう少し考えていく…。
+"""
+
 import sys
 input = sys.stdin.readline
 def main():
-    li = [list(map(int, input().split())) for _ in range(4)]
-    for i in range(4):
-        for j in range(2):
-            if li[i][j] < 0:li[i][j] = -li[i][j]
-    flag = True
+    # 角ABC（角度は時計回りに測る）が180度未満なら true
+    def angle(a, b, c):
+        return (a[0] - b[0]) * (c[1] - b[1]) - (a[1] - b[1]) * (c[0] - b[0]) > 0
 
-    #a 比べる対象 b,d
-    if (-li[0][0] <= li[3][0] <= li[0][0] and -li[0][0] <= li[0][0] <= li[1][0]) or (-li[0][1] <= li[3][1] <= li[0][1] and -li[0][1] <= li[1][1] <= li[0][1]):pass
-    else:flag=False
+    ax, ay, bx, by, cx, cy, dx, dy = map(int, open(0).read().split())
+    a = (ax, ay)
+    b = (bx, by)
+    c = (cx, cy)
+    d = (dx, dy)
 
-    #b 比べる対象 a,c
-    if (-li[1][0] <= li[0][0] <= li[1][0] and -li[1][0] <= li[2][0] <= li[1][0]) or (-li[1][1] <= li[0][1] <= li[1][1] and -li[1][1] <= li[2][1] <= li[1][1]):pass
-    else:flag=False
-
-    #c 比べる対象 b,d
-    if (-li[2][0] <= li[1][0] <= li[2][0] and -li[2][0] <= li[3][0] <= li[1][0]) or (-li[2][1] <= li[1][1] <= li[2][1] and -li[2][1] <= li[3][1] <= li[2][1]):pass
-    else:flag=False
-
-    #d 比べる対象 a,c
-    if (-li[3][0] <= li[0][0] <= li[3][0] and -li[3][0] <= li[2][0] <= li[1][0]) or (-li[3][1] <= li[0][1] <= li[3][1] and -li[3][1] <= li[2][1] <= li[3][1]):pass
-    else:flag=False
-    print('Yes' if flag else 'No')
-
+    if angle(b, a, d) and angle(c, b, a) and angle(d, c, b) and angle(a, d, c):
+        print('Yes')
+    else:
+        print('No')
     return
 
 if __name__ == '__main__':

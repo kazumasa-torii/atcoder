@@ -37,15 +37,15 @@ def main():
     li = [list(map(int, input().split())) for _ in range(n)]
     max_time = 0
     for i in li: max_time = max(i[0], max_time)
-    X = [0] * (max_time + 1)
-    A = [0] * (max_time + 1)
+    position_list = [0] * (max_time + 1)
+    scor_list = [0] * (max_time + 1)
 
     for i in li:
         t, x, a = i
-        X[t] = x
-        A[t] = a
+        position_list[t] = x
+        scor_list[t] = a
 
-    dp = [[-int(1e19)] * (max_time + 1) for _ in range(5)]
+    dp = [[0] * (max_time + 1) for _ in range(5)]
     dp[0][0] = 0
 
     for time in range(1, max_time+1):
@@ -53,7 +53,8 @@ def main():
             dp[position][time] = dp[position][time-1]
             if position != 0: dp[position][time] = max(dp[position][time], dp[position-1][time-1])
             if position != 4: dp[position][time] = max(dp[position][time], dp[position+1][time-1])
-        dp[X[time]][time] += A[time]
+        dp[position_list[time]][time] += scor_list[time]
+        print(dp)
     print(max(dp[i][max_time] for i in range(5)))
     return
 
