@@ -36,13 +36,14 @@ def main():
     acc = [0]
     for i in range(n): acc.append(acc[-1]+a[i])
     now = 0
-    si = [0] * (n-m+1)
+    si = []
     for i in range(m): now += a[i]*(i+1)
-    si[0] = now
-    for i in range(n-m+1):
-        si[i] = si[i-1] + m * a[m+i-1] - (acc[m+i-1]-acc[i-1])
-    return max(si)
+    si.append(now)
+    for i in range(n-m):
+        si.append(si[-1] - ((acc[i+m] - acc[i] )- (a[i+m] * m)))
+    print(max(si))
+    return
 
 if __name__ == '__main__':
-    print(main())
+    main()
     print(f'[Sec] {str(time.time() - StartTime)}')
