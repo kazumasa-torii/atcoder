@@ -1,11 +1,11 @@
 def main():
-    s = input()
-    w = 0
+    S = list(input())
+    ans = 0
     b = 0
-    for i in list(s):
-        if i == 'B': b+=1
-        else: w+=1
-    print(min(w, b) * 2)
+    for i in S:
+        if i == "W": ans += b
+        else: b += 1
+    print(ans)
     return
 
 if __name__ == '__main__':

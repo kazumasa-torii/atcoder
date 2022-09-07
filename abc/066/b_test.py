@@ -3,20 +3,21 @@ import time
 from io import StringIO
 
 _INPUT = """\
-BBW
+abaababaab
 
 """
 StartTime = time.time()
 sys.stdin = StringIO(_INPUT)
 
+from collections import defaultdict
 def main():
-    S = list(input())
-    ans = 0
-    b = 0
-    for i in S:
-        if i == "W": ans += b
-        else: b += 1
-    print(ans)
+    s = list(input())
+    dic = defaultdict(int)
+    for i in s: dic[i] += 1
+
+    for i, v in enumerate(dic):
+        if dic[v] % 2 != 0: flag = 
+
     return
 
 if __name__ == '__main__':
