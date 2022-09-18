@@ -1,19 +1,19 @@
-import sys
-input = sys.stdin.readline
+"""
+ビットの部分集合問題に変換される
+よくわからないので記事を読み込む予定
+https://primenumber.hatenadiary.jp/entry/2016/12/01/000000
+"""
+
 def main():
-    n = int(input())
-    a = []
-    for i in range(60):
-        if n&(1<<i):a.append(i)
-    
-    k = len(a)
-    res = []
-    for i in range(1<<k):
-        cur = 0
-        for j in range(k):
-            if i & (1 <<j): cur |= 1 << a[j]
-        res.append(cur)
-    for i in res:
+    x = int(input())
+    i = x
+    li = []
+    while True:
+        li.append(i)
+        if i == 0: break
+        i = (i-1)&x
+    li.sort()
+    for i in li:
         print(i)
     return
 
