@@ -3,9 +3,7 @@ import time
 from io import StringIO
 from turtle import Turtle
 from typing import List, Tuple
-# input = sys.stdin.readline
-# import pypyjit
-# pypyjit.set_param('max_unroll_recursion=-1')
+
 
 _INPUT = """\
 5 2 3 2

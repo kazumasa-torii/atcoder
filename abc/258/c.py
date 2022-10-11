@@ -16,9 +16,7 @@ from io import StringIO
 from typing import List
 
 from setuptools import sic
-# input = sys.stdin.readline
-# import pypyjit
-# pypyjit.set_param('max_unroll_recursion=-1')
+
 
 _INPUT = """\
 10 8
